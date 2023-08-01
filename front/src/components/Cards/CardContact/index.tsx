@@ -19,7 +19,7 @@ export const CardContact = ({ contact }: CardProps) => {
       <h1 className='title'>{contact.full_name}</h1>
       <p className='email'> {contact.email}</p>
       <p className='date'>{contact.registration_date}</p>
-      <h2 className='contact'>+ {contact.phone}</h2>
+      <h2 className='contact'>+ {contact.phone_number}</h2>
       <div className='btn-box'>
 
       <button className='update-btn' type='button' onClick={toggleModal}>Atualizar</button>

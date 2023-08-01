@@ -15,6 +15,8 @@ interface AuthContextValues {
   loading: boolean;
   register: (formData: ClientData) => void;
   user: ContactData | null ;
+  update: (data: ClientData, id: number) => Promise<void>;
+  get:(id:number)=> Promise<void>
 }
 
 export const AuthContext = createContext({} as AuthContextValues);
@@ -61,9 +63,38 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(error);
     }
   };
+  const get = async (id:number)=>{
+    try {
+      const token = window.localStorage.getItem("your-todolist:token");
+      const response = await api.get(`/client/${id}`,{
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setUser(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const update = async(data: ClientData, id: number)=>{
+    try {
+      const token = window.localStorage.getItem("your-todolist:token");
+
+      const response = await api.put(`/contact/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
-    <AuthContext.Provider value={{ signIn, loading, register, user }}>
+    <AuthContext.Provider value={{ signIn, loading, register, user, update,get }}>
       {children}
     </AuthContext.Provider>
   );

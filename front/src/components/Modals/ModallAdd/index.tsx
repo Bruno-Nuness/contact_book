@@ -31,12 +31,18 @@ export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
   return (
     <Modal toggleModal={toggleModal}>
       <form onSubmit={handleSubmit(createContact)}>
+
         <label htmlFor="full_name">Nome:</label>
         <input type="text" id="full_name" {...register("full_name")} />
+
+
         <label htmlFor="email">E-mail:</label>
         <input type="email" id="email" {...register("email")} />
+
+
         <label htmlFor="phone">Telefone:</label>
-        <input type="number" id="phone" {...register("phone")} />
+        <input type="number" id="phone" {...register("phone_number")} />
+
         <button type="submit">Cadastrar</button>
       </form>
     </Modal>
