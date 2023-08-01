@@ -10,14 +10,19 @@ const emailExists = async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
-  const email: string = req.body.email;
+  try {
+    const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
+    const email: string = req.body.email;
 
-  const existingClient = await clientRepository.findOne({ where: { email } });
-  if (existingClient) {
-    throw new AppError("Email already exists", 409);
+    const emailExist = await clientRepository.exist({ where: { email: email } });
+
+    if (emailExist) {
+      throw new AppError("Email already exists", 409);
+    }
+
+    return next();
+  } catch (error) {
+    return next(error);
   }
-
-  return next();
 };
 export {emailExists}

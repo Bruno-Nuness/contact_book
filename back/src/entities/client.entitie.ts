@@ -16,6 +16,8 @@ class Client {
   @Column({ unique: true })
   email: string;
   @Column()
+  phone_number: string
+  @Column()
   password: string;
   @Column()
   registration_date: Date;

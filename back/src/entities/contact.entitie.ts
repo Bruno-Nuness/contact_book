@@ -10,11 +10,11 @@ class Contact {
   @Column({ unique: true })
   email: string;
   @Column()
-  phone: number;
+  phone_number: string;
 
   @Column()
   registration_date: Date;
-  @ManyToOne(() => Client)
+  @ManyToOne(() => Client, { onDelete: "CASCADE" })
   client: Client;
 }
 export { Contact };

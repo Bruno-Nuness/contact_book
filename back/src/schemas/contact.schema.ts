@@ -4,21 +4,26 @@ const ContactSchema = z.object({
   id: z.number(),
   full_name: z.string(),
   email: z.string(),
-  phone: z.number(),
+  phone_number: z.string(),
   registration_date: z.date(),
 });
 
 const ContactSchemaRequest = ContactSchema.omit({
   id: true,
-  
 });
 const ContactSchemaRequestValid = ContactSchema.omit({
   id: true,
-  registration_date:true
+  registration_date: true,
 });
 const ContactSchemaResponse = z.array(ContactSchema);
 const ContactSchemaUpdate = ContactSchema.omit({
   id: true,
 }).partial();
 
-export {ContactSchema,ContactSchemaRequest,ContactSchemaResponse,ContactSchemaUpdate,ContactSchemaRequestValid}
+export {
+  ContactSchema,
+  ContactSchemaRequest,
+  ContactSchemaResponse,
+  ContactSchemaUpdate,
+  ContactSchemaRequestValid,
+};
