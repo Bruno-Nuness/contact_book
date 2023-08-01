@@ -1,5 +1,51 @@
 # contact_book
 
+Instalação
+Para executar este projeto, você precisa ter o Node.js e o npm instalados em seu sistema. Após clonar o repositório, siga os passos abaixo para instalar as dependências necessárias.
+
+Abra um terminal ou prompt de comando no diretório raiz do projeto.
+Execute o seguinte comando para instalar as dependências do projeto:
+
+
+npm install
+
+O projeto inclui os seguintes scripts npm que podem ser executados usando o comando npm run dev
+dev: Inicia o servidor de desenvolvimento usando o ts-node-dev com recarregamento automático ativado.
+
+Dependências
+
+O projeto depende dos seguintes pacotes npm:
+
+@types/bcryptjs: ^2.4.2
+@types/cors: ^2.8.13
+@types/express: ^4.17.17
+@types/jsonwebtoken: ^9.0.2
+bcrypt: ^5.1.0
+bcryptjs: ^2.4.3
+cors: ^2.8.5
+dotenv: ^16.3.1
+express: ^4.18.2
+express-async-error: ^0.0.2
+express-async-errors: ^3.1.1
+jsonwebtoken: ^9.0.1
+pg: ^8.11.1
+pg-format: ^1.0.4
+reflect-metadata: ^0.1.13
+typeorm: ^0.3.17
+zod: ^3.21.4
+Dependências de Desenvolvimento
+O projeto utiliza as seguintes dependências de desenvolvimento:
+
+ts-node-dev: ^2.0.0
+Como Executar
+Para iniciar o servidor de desenvolvimento, utilize o seguinte comando:
+
+npm run dev
+
+O servidor estará em execução em http://localhost:3000.
+
+Observação: Certifique-se de configurar as variáveis de ambiente necessárias para o correto funcionamento do projeto. Você pode consultar o arquivo .env para verificar as variáveis de ambiente requeridas.
+
 ROUTES BACK-END
 
 ---CLIENT----
