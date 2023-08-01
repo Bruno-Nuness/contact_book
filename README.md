@@ -5,21 +5,60 @@ ROUTES BACK-END
 ---CLIENT----
 
 POST-----------
-
 /client
 
 rota para criar clients
+
 Request{
 "email":"client@mail.com",
 "full_name": "Client",
 "password": "1234"
 }
+
 Response{
 "id": 1,
 "full_name": "Client",
 "email": "client@mail.com",
 "registration_date": "2023-07-31T02:11:56.407Z"
 }
+
+GET------------
+/client/:id
+
+rota para listar os dados do client OBS:Necessita de autenficação
+Não necessita de corpo na requisição
+Response{
+"id": 2,
+"full_name": "Bruno",
+"phone_number": "1111",
+"email": "bruno@mail.com",
+"registration_date": "2023-08-01T03:29:28.393Z"
+}
+
+PACTH-------------
+/client/:id
+
+rota para atualizar dados do client OBS:Necessita de autenficação
+
+Request{
+"email":"bruno1@mail.com",
+"full_name": "Bruno",
+"phone_number":"1111"
+}
+Response{
+"id": 1,
+"full_name": "Bruno",
+"email": "bruno1@mail.com",
+"phone_number": "1111",
+"registration_date": "2023-07-31T21:37:59.738Z"
+}
+
+DELETE-----------
+/client/:id
+
+rota para exluir o client OBS:Necessita de autenficação
+Não necessita de corno na requisição
+Response STATUS CODE 204
 
 /login
 
