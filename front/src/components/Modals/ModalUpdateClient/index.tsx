@@ -13,7 +13,7 @@ interface ModalUpdateContactProps {
   toggleModal: () => void;
 }
 
-export const ModalUpdateContact = ({ toggleModal }: ModalUpdateContactProps) => {
+export const ModalUpdateClient = ({ toggleModal }: ModalUpdateContactProps) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export const ModalUpdateContact = ({ toggleModal }: ModalUpdateContactProps) => 
   return (
     <Modal toggleModal={toggleModal}>
       <Container>
-      <h1>Atualização do Contact</h1>
+        <h1>Atualização do Client</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputRegister
           id="full_name"

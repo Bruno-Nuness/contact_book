@@ -19,14 +19,16 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     width: 35%;
+
   }
   form {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap:2rem;
     align-items: center;
     width: 100%;
-    height: 30rem;
+    
+
     > label {
       font-weight: bold;
     }

@@ -32,6 +32,14 @@ export const Register = () => {
             {...register("full_name", { required: "O nome é obrigatório" })}
           />
           <InputRegister
+            id="phone_number"
+            label="Phone:"
+            type="text"
+            placeholder="Numero para contato"
+            error={errors.phone_number?.message}
+            {...register("phone_number", { required: "O numero para contato é obrigatório" })}
+          />
+          <InputRegister
             id="email"
             label="Email:"
             type="email"
