@@ -6,13 +6,9 @@ import {  TClientResponse } from "../../interfaces/client.interfaces";
 import {ClientSchemaResponse } from "../../schemas/client.schemas";
 
 
-const ListClientService = async (clientId: number): Promise<TClientResponse> => {
+const ListClientService = async (): Promise<TClientResponse> => {
   const clientRepository = AppDataSource.getRepository(Client);
-  const client = await clientRepository.findOne({
-    where: {
-      id: clientId,
-    },
-  });
+  const client = await clientRepository.find();
   if (!client) {
     throw new AppError("Client not found.", 404);
   }

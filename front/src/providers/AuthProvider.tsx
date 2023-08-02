@@ -15,8 +15,15 @@ interface AuthContextValues {
   loading: boolean;
   register: (formData: ClientData) => void;
   user: ContactData | null ;
-  update: (data: ClientData, id: number) => Promise<void>;
-  get:(id:number)=> Promise<void>
+  updateClient: (data: FormData, id: number) => Promise<void>;
+  deleteClient: ( id: number) => Promise<void>;
+  get:()=> Promise<void>
+}
+interface FormData {
+  full_name: string;
+  email: string;
+  phone_number: string;
+
 }
 
 export const AuthContext = createContext({} as AuthContextValues);
@@ -40,10 +47,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signIn = async (data: LoginData) => {
     try {
       const response = await api.post("/login", data);
+ 
       const { token } = response.data;
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("your-todolist:token", token);
+
       setUser(response.data.user)
+      console.log(response.data.user)
       setLoading(false);
       navigate("dash");
     } catch (error) {
@@ -63,10 +73,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(error);
     }
   };
-  const get = async (id:number)=>{
+  const get = async ()=>{
     try {
       const token = window.localStorage.getItem("your-todolist:token");
-      const response = await api.get(`/client/${id}`,{
+      const response = await api.get(`/client`,{
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -76,11 +86,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(error)
     }
   }
-  const update = async(data: ClientData, id: number)=>{
+  const updateClient = async(data: FormData, id: number)=>{
     try {
       const token = window.localStorage.getItem("your-todolist:token");
 
-      const response = await api.put(`/contact/${id}`, data, {
+      const response = await api.patch(`/contact/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const deleteClient = async(id: number)=>{
+    try {
+      const token = window.localStorage.getItem("your-todolist:token");
+
+      const response = await api.delete(`/contact/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +120,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, loading, register, user, update,get }}>
+    <AuthContext.Provider value={{ signIn, loading, register, user, updateClient,get ,deleteClient}}>
       {children}
     </AuthContext.Provider>
   );

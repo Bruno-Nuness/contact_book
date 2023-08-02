@@ -17,7 +17,7 @@ const ClientRegister = ClientSchema.omit({
 });
 const ClientSchemaResponse = ClientSchema.omit({
   password: true,
-});
+}).array();
 const LoginSchema = ClientSchema.omit({
   id:true,
   registration_date:true,

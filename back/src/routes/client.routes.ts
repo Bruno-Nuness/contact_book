@@ -1,10 +1,4 @@
 import { Router } from "express";
-import {
-  createClientController,
-  deleteClientController,
-  listClientController,
-  updateClientController,
-} from "../controllers/Client/createClient.controller";
 import { emailExists } from "../middlewares/EmailExists.middleware";
 import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 import { isUserMiddleware } from "../middlewares/isUser.middleware";
@@ -12,6 +6,10 @@ import { ensureDataIsValid } from "../middlewares/ensureDataValid.middleware";
 import { ClientRegister } from "../schemas/client.schemas";
 import { ensureIsOwnerMiddleware } from "../middlewares/ensureOwner.middleware";
 import { ContactSchemaUpdate } from "../schemas/contact.schema";
+import createClientController from "../controllers/Client/createClient.controller";
+import deleteClientController from "../controllers/Client/deleteClient.controller";
+import listClientController from "../controllers/Client/listClient.controller";
+import updateClientController from "../controllers/Client/updateClient.controller";
 
 const ClientRoute = Router();
 ClientRoute.post(
@@ -21,9 +19,8 @@ ClientRoute.post(
   createClientController
 );
 ClientRoute.get(
-  "/:id",
-  ensureAuthMiddleware,
-  isUserMiddleware,
+  "",
+
   listClientController
 );
 ClientRoute.patch(

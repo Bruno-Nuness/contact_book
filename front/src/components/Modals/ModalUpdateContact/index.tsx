@@ -2,28 +2,49 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Modal } from "../Modal";
 import InputRegister from "../../Inputs";
 import { Container } from "./styles";
+import { useAuth } from "../../../providers/AuthProvider";
 
 interface FormData {
   full_name: string;
   email: string;
-  phone: string;
+  phone_number: string;
 }
+interface ClientData {
+  full_name: string;
+  email: string;
+  phone_number: string;
 
+}
 interface ModalUpdateContactProps {
   toggleModal: () => void;
+  contactId: number
 }
 
-export const ModalUpdateContact = ({ toggleModal }: ModalUpdateContactProps) => {
+export const ModalUpdateContact = ({ toggleModal, contactId }: ModalUpdateContactProps) => {
+  const { updateClient } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-      console.log(data);
+  const onSubmit: SubmitHandler<FormData> = async(data) => {
+    try {
+      const { full_name, email, phone_number } = data;
+      const updatedContactData: ClientData = {
+        full_name,
+        email,
+        phone_number: phone_number,
+   
+      };
+      await updateClient(updatedContactData, contactId);
+   
       toggleModal();
-    };
+   
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -52,8 +73,8 @@ export const ModalUpdateContact = ({ toggleModal }: ModalUpdateContactProps) => 
           label="Phone:"
           type="text"
           placeholder="Digite seu telefone"
-          error={errors.phone?.message}
-          {...register("phone", { required: "O telefone é obrigatório" })}
+          error={errors.phone_number?.message}
+          {...register("phone_number", { required: "O telefone é obrigatório" })}
         />
         <button type="submit">Atualizar</button>
       </form>

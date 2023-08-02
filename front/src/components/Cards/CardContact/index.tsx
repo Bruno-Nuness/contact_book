@@ -5,6 +5,7 @@ import { ModalUpdateContact } from '../../Modals/ModalUpdateContact';
 import { ModalDeleteContact } from '../../Modals/ModalDeleteContact';
 
 
+
 interface CardProps {
   contact: IContact;
 }
@@ -16,12 +17,9 @@ export const CardContact = ({ contact }: CardProps) => {
   const toggleDeleteModal = ()=> setIsOpenDeleteModal(!isOpenDeleteModal)
   return (
     <Container key={contact.id}>
-        {
-            isOpenModal && <ModalUpdateContact toggleModal={toggleModal}></ModalUpdateContact>
-        }
-        {
-            isOpenDeleteModal && <ModalDeleteContact toggleModal={toggleDeleteModal}></ModalDeleteContact>
-        }
+      
+      {isOpenModal && <ModalUpdateContact toggleModal={toggleModal} contactId={contact.id} />}
+      {isOpenDeleteModal && <ModalDeleteContact toggleModal={toggleDeleteModal} contactId={contact.id} />}
       <h1 className='title'>{contact.full_name}</h1>
       <p className='email'> {contact.email}</p>
       <p className='date'>{contact.registration_date}</p>
