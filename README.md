@@ -1,20 +1,32 @@
-# contact_book
+Documentação de Instalação e Utilização
 
-Instalação
-Para executar este projeto, você precisa ter o Node.js e o npm instalados em seu sistema. Após clonar o repositório, siga os passos abaixo para instalar as dependências necessárias.
+Requisitos:
 
-Abra um terminal ou prompt de comando no diretório raiz do projeto.
-Execute o seguinte comando para instalar as dependências do projeto:
+Node.js e npm devem estar instalados no sistema.
+Clonagem do repositório:
+Clone este repositório para o seu sistema.
+
+Instalação de Dependências:
+Abra um terminal ou prompt de comando no diretório raiz do projeto e execute o seguinte comando para instalar as dependências necessárias:
 
 
 npm install
-
-O projeto inclui os seguintes scripts npm que podem ser executados usando o comando npm run dev
+Scripts npm disponíveis:
 dev: Inicia o servidor de desenvolvimento usando o ts-node-dev com recarregamento automático ativado.
+Para executar o servidor de desenvolvimento, utilize o seguinte comando:
 
-Dependências
+
+
+npm run dev
+O servidor estará em execução em http://localhost:3000.
+
+Observação: Certifique-se de configurar as variáveis de ambiente necessárias para o correto funcionamento do projeto. Consulte o arquivo .env para verificar as variáveis de ambiente requeridas.
+
+Dependências:
 
 O projeto depende dos seguintes pacotes npm:
+
+
 
 @types/bcryptjs: ^2.4.2
 @types/cors: ^2.8.13
@@ -33,157 +45,188 @@ pg-format: ^1.0.4
 reflect-metadata: ^0.1.13
 typeorm: ^0.3.17
 zod: ^3.21.4
-Dependências de Desenvolvimento
-O projeto utiliza as seguintes dependências de desenvolvimento:
+Dependências de Desenvolvimento:
+
+O projeto utiliza a seguinte dependência de desenvolvimento:
 
 ts-node-dev: ^2.0.0
-Como Executar
-Para iniciar o servidor de desenvolvimento, utilize o seguinte comando:
 
-npm run dev
-
-O servidor estará em execução em http://localhost:3000.
-
-Observação: Certifique-se de configurar as variáveis de ambiente necessárias para o correto funcionamento do projeto. Você pode consultar o arquivo .env para verificar as variáveis de ambiente requeridas.
-
-ROUTES BACK-END
+Rotas do Back-End:
 
 ---CLIENT----
 
-POST-----------
-/client
+POST /client
 
-rota para criar clients
+Rota para criar clientes.
 
-Request{
-"email":"client@mail.com",
-"full_name": "Client",
-"password": "1234"
+Request
+
+
+{
+  "email": "client@mail.com",
+  "full_name": "Client",
+  "password": "1234"
 }
+Response
 
-Response{
-"id": 1,
-"full_name": "Client",
-"email": "client@mail.com",
-"registration_date": "2023-07-31T02:11:56.407Z"
+
+{
+  "id": 1,
+  "full_name": "Client",
+  "email": "client@mail.com",
+  "registration_date": "2023-07-31T02:11:56.407Z"
 }
+GET /client/:id
 
-GET------------
-/client/:id
+Rota para listar os dados do cliente.
 
-rota para listar os dados do client OBS:Necessita de autenficação
-Não necessita de corpo na requisição
-Response{
-"id": 2,
-"full_name": "Bruno",
-"phone_number": "1111",
-"email": "bruno@mail.com",
-"registration_date": "2023-08-01T03:29:28.393Z"
+Requer autenticação.
+
+Response
+
+
+
+{
+  "id": 2,
+  "full_name": "Bruno",
+  "phone_number": "1111",
+  "email": "bruno@mail.com",
+  "registration_date": "2023-08-01T03:29:28.393Z"
 }
+PATCH /client/:id
 
-PACTH-------------
-/client/:id
+Rota para atualizar dados do cliente.
 
-rota para atualizar dados do client OBS:Necessita de autenficação
+Requer autenticação.
 
-Request{
-"email":"bruno1@mail.com",
-"full_name": "Bruno",
-"phone_number":"1111"
+Request
+
+
+
+{
+  "email": "bruno1@mail.com",
+  "full_name": "Bruno",
+  "phone_number": "1111"
 }
-Response{
-"id": 1,
-"full_name": "Bruno",
-"email": "bruno1@mail.com",
-"phone_number": "1111",
-"registration_date": "2023-07-31T21:37:59.738Z"
+Response
+
+
+
+{
+  "id": 1,
+  "full_name": "Bruno",
+  "email": "bruno1@mail.com",
+  "phone_number": "1111",
+  "registration_date": "2023-07-31T21:37:59.738Z"
 }
+DELETE /client/:id
 
-DELETE-----------
-/client/:id
+Rota para excluir o cliente.
 
-rota para exluir o client OBS:Necessita de autenficação
-Não necessita de corno na requisição
+Requer autenticação.
+
 Response STATUS CODE 204
 
 /login
 
-rota para logar em sua conta
-Request{
-"email":"client@mail.com",
-"password": "1234"
-}
-Response{
-"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkNsaWVudCIsImlhdCI6MTY5MDc2OTYyOSwiZXhwIjoxNjkwNzczMjI5LCJzdWIiOiI2In0.xE1Hfx85HNGlsf1ZdpM_0rXxsUFIaj7O5d3uEyYMsCo"
-}
+Rota para fazer login em sua conta.
 
+Request
+
+
+
+{
+  "email": "client@mail.com",
+  "password": "1234"
+}
+Response
+
+json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkNsaWVudCIsImlhdCI6MTY5MDc2OTYyOSwiZXhwIjoxNjkwNzczMjI5LCJzdWIiOiI2In0.xE1Hfx85HNGlsf1ZdpM_0rXxsUFIaj7O5d3uEyYMsCo"
+}
 ---CONTACT---
 
-\*\*Todas as rotas necessitam de autentificação de token, ou seja um usuário logado
+Todas as rotas necessitam de autentificação de token, ou seja, um usuário logado.
 
-POST----------
-/contact
+POST /contact
 
-Cria contatos em sua agenda OBS:necessita autentificação
+Cria contatos em sua agenda.
 
-Request{
-"full_name":"contact ",
-"email" : "contact@mail.com",
-"phone": 4255589
-}
-Response{
-"id": 15,
-"full_name": "contact ",
-"email": "contact@mail.com",
-"phone": 4255589,
-"registration_date": "2023-07-31T02:16:01.021Z"
-}
+Requer autentificação.
 
-GET-----
+Request
 
-/contact
-lista todos os contatos cadastrados OBS:necessita autentificação
-Request /** não necessita de corpo /**
-Response[
+
+
 {
-"id": 15,
-"full_name": "contact ",
-"email": "contact@mail.com",
-"phone": 4255589,
-"registration_date": "2023-07-31T02:16:01.021Z"
+  "full_name": "contact",
+  "email": "contact@mail.com",
+  "phone": 4255589
 }
-]
+Response
 
-PATCH --------
 
-/contact/:id
 
-Atualiza as informações do contato OBS:necessita autentificação
-todos os campos são opcionais, com execessão do id e registration_date
-
-Request{
-"full_name":"nome atualizado",
-"email" : "emailAtualizado@mail.com",
-"phone": 4233335
+{
+  "id": 15,
+  "full_name": "contact",
+  "email": "contact@mail.com",
+  "phone": 4255589,
+  "registration_date": "2023-07-31T02:16:01.021Z"
 }
-Response{
-"id": 15,
-"full_name": "nome atualizado",
-"email": "emailAtualizado@mail.com",
-"phone": 4233335,
-"registration_date": "2023-07-31T02:16:01.021Z"
+GET /contact
+
+Lista todos os contatos cadastrados.
+
+Requer autentificação.
+
+Request: não necessita de corpo.
+
+Response
+
+
+
+[  {    "id": 15,    "full_name": "contact",    "email": "contact@mail.com",    "phone": 4255589,    "registration_date": "2023-07-31T02:16:01.021Z"  }]
+PATCH /contact/:id
+
+Atualiza as informações do contato.
+
+Requer autentificação.
+
+Todos os campos são opcionais, com exceção do id e registration_date.
+
+Request
+
+
+
+{
+  "full_name": "nome atualizado",
+  "email": "emailAtualizado@mail.com",
+  "phone": 4233335
 }
+Response
 
-DELETE-----
 
-/contact/:id
 
-Exclui o contato OBS: necessita de autentificação
-NÃO NECESSITA DE CORPO
-E a response é um status code 204
+{
+  "id": 15,
+  "full_name": "nome atualizado",
+  "email": "emailAtualizado@mail.com",
+  "phone": 4233335,
+  "registration_date": "2023-07-31T02:16:01.021Z"
+}
+DELETE /contact/:id
 
---------FRONT--------
+Exclui o contato.
 
-Login "/"
-Cadastro "/register"
-Dashboard "/dash"
+Requer autentificação.
+
+Não necessita de corpo e a response é um status code 204.
+
+Rotas do Front-End:
+
+Login: "/"
+Cadastro: "/register"
+Dashboard: "/dash"
