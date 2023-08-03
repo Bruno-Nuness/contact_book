@@ -76,6 +76,11 @@ Response
   "email": "client@mail.com",
   "registration_date": "2023-07-31T02:11:56.407Z"
 }
+
+GET /client
+Rota para listar todos os clientes
+
+
 GET /client/:id
 
 Rota para listar os dados do cliente.
@@ -224,9 +229,3 @@ Exclui o contato.
 Requer autentificação.
 
 Não necessita de corpo e a response é um status code 204.
-
-Rotas do Front-End:
-
-Login: "/"
-Cadastro: "/register"
-Dashboard: "/dash"
