@@ -13,15 +13,25 @@ const ClientSchemaRequest = ClientSchema.omit({
 });
 const ClientRegister = ClientSchema.omit({
   id: true,
-  registration_date:true
+  registration_date: true,
 });
-const ClientSchemaResponse = ClientSchema.omit({
+const ClientSchemaResponseList = ClientSchema.omit({
   password: true,
 }).array();
+const ClientSchemaResponse = ClientSchema.omit({
+  password: true,
+});
 const LoginSchema = ClientSchema.omit({
-  id:true,
-  registration_date:true,
-  phone_number:true,
-  full_name:true
-})
-export { ClientSchema, ClientSchemaRequest, ClientSchemaResponse ,LoginSchema, ClientRegister};
+  id: true,
+  registration_date: true,
+  phone_number: true,
+  full_name: true,
+});
+export {
+  ClientSchema,
+  ClientSchemaRequest,
+  ClientSchemaResponseList,
+  LoginSchema,
+  ClientRegister,
+  ClientSchemaResponse,
+};

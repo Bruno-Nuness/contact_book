@@ -2,6 +2,7 @@ import { HeaderContainer } from "./styles"
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import { ModalDeleteClient } from "../Modals/ModalDeleteClient";
+import {toast} from "react-toastify"
 
 
 export const Header = ()=>{
@@ -9,14 +10,18 @@ export const Header = ()=>{
     const toggleModal = ()=>setIsOpenModal(!isOpenModal)
     const navigate = useNavigate()
     const logout = ()=>{
+        toast.success("Até mais! ;D ")
         localStorage.removeItem('your-todolist:token')
-        navigate("/")
+        setTimeout(() => {
+            navigate("/");
+          }, 1500);
+    
 
     }
     return (
         <HeaderContainer>
             {
-            isOpenModal && <ModalDeleteClient toggleModal={toggleModal}></ModalDeleteClient>
+            isOpenModal && <ModalDeleteClient  toggleModal={toggleModal}></ModalDeleteClient>
             }
             <h1>CONTACT BOOK</h1>
             <div className="configurations">

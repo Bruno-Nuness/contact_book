@@ -16,7 +16,7 @@ const createClientService = async (
 
   console.log("antes", clientData);
   clientData.password = await hash(clientData.password, 10);
-  clientData.registration_date = new Date()
+  clientData.registration_date = new Date();
   console.log("depois");
 
   const client: TClientResponse = clientRepository.create(clientData);

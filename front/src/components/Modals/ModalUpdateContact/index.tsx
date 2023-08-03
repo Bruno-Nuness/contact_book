@@ -21,7 +21,7 @@ interface ModalUpdateContactProps {
 }
 
 export const ModalUpdateContact = ({ toggleModal, contactId }: ModalUpdateContactProps) => {
-  const { updateClient } = useAuth();
+  const { updateContact } = useAuth();
   const {
     register,
     handleSubmit,
@@ -37,8 +37,8 @@ export const ModalUpdateContact = ({ toggleModal, contactId }: ModalUpdateContac
         phone_number: phone_number,
    
       };
-      await updateClient(updatedContactData, contactId);
-   
+      await updateContact(updatedContactData, contactId);
+      window.location.reload();
       toggleModal();
    
     } catch (error) {

@@ -5,6 +5,7 @@ import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { ClientData } from "../pages/Register/validator";
 import { ContactData } from "../components/Modals/ModallAdd/validator";
+import { ToastContainer, toast } from "react-toastify";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -17,6 +18,8 @@ interface AuthContextValues {
   user: ContactData | null ;
   updateClient: (data: FormData, id: number) => Promise<void>;
   deleteClient: ( id: number) => Promise<void>;
+  updateContact: (data: FormData, id: number) => Promise<void>;
+  deleteContact: ( id: number) => Promise<void>;
   get:()=> Promise<void>
 }
 interface FormData {
@@ -53,7 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem("your-todolist:token", token);
 
       setUser(response.data.user)
-      console.log(response.data.user)
+      toast.success("Bem vindo!")
       setLoading(false);
       navigate("dash");
     } catch (error) {
@@ -64,7 +67,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const register = async (formData: ClientData) => {
     try {
       const response = await api.post('/client', formData);
-      console.log(response.data.message);
+  
+      toast.success("Seja muito bem vindo!!")
       setTimeout(() => {
         navigate("/");
       }, 1500);
@@ -86,7 +90,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(error)
     }
   }
-  const updateClient = async(data: FormData, id: number)=>{
+  const updateContact = async(data: FormData, id: number)=>{
     try {
       const token = window.localStorage.getItem("your-todolist:token");
 
@@ -95,14 +99,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+      toast("Contato atualizado!")
 
       setUser(response.data);
     } catch (error) {
       console.log(error);
     }
   }
-  const deleteClient = async(id: number)=>{
+  const updateClient = async(data: FormData, id: number)=>{
+    try {
+      const token = window.localStorage.getItem("your-todolist:token");
+
+      const response = await api.patch(`/client/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Client atualizado")
+    
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const deleteContact = async(id: number)=>{
     try {
       const token = window.localStorage.getItem("your-todolist:token");
 
@@ -112,7 +132,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         },
       });
   
+      toast("Contato deletado >.< ")
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const deleteClient = async(id: number)=>{
+    try {
+      const token = window.localStorage.getItem("your-todolist:token");
 
+      const response = await api.delete(`/client/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast("Conta excluida, esperamos que volte ;(")
+   
       setUser(response.data);
     } catch (error) {
       console.log(error);
@@ -120,9 +156,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, loading, register, user, updateClient,get ,deleteClient}}>
+    <div>
+        <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    <AuthContext.Provider value={{ signIn, loading, register, user, updateClient,get ,deleteClient, updateContact, deleteContact}}>
       {children}
     </AuthContext.Provider>
+    </div>
   );
 };
 export const useAuth = () => useContext(AuthContext);

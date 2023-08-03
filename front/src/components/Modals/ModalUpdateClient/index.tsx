@@ -2,26 +2,29 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Modal } from "../Modal";
 import InputRegister from "../../Inputs";
 import { Container } from "./styles";
+import { useAuth } from "../../../providers/AuthProvider";
 
 interface FormData {
   full_name: string;
   email: string;
-  phone: string;
+  phone_number: string;
 }
 
 interface ModalUpdateContactProps {
   toggleModal: () => void;
+  id:number
 }
 
-export const ModalUpdateClient = ({ toggleModal }: ModalUpdateContactProps) => {
+export const ModalUpdateClient = ({ toggleModal, id }: ModalUpdateContactProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
+  const{updateClient}=useAuth()
   const onSubmit: SubmitHandler<FormData> = (data) => {
-      console.log(data);
+      updateClient(data, id)
+      window.location.reload();
       toggleModal();
     };
 
@@ -52,8 +55,8 @@ export const ModalUpdateClient = ({ toggleModal }: ModalUpdateContactProps) => {
           label="Phone:"
           type="text"
           placeholder="Digite seu telefone"
-          error={errors.phone?.message}
-          {...register("phone", { required: "O telefone é obrigatório" })}
+          error={errors.phone_number?.message}
+          {...register("phone_number", { required: "O telefone é obrigatório" })}
         />
         <button type="submit">Atualizar</button>
       </form>

@@ -8,11 +8,14 @@ import { api } from "../../../services/api";
 import { IContact } from "../../../pages/Dashboard";
 import { Container } from "./styles";
 import InputRegister from "../../Inputs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 interface ModalAddProps {
   toggleModal: () => void;
   setContact: Dispatch<React.SetStateAction<IContact[]>>;
+  
 }
 
 export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
@@ -25,6 +28,7 @@ export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
       const response = await api.post<IContact>("/contact", data);
       setContact((previousContact) => [response.data, ...previousContact]);
       toggleModal();
+      toast.success("Contato adionado!")
     } catch (error) {
       console.error(error);
     }
@@ -33,6 +37,18 @@ export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
   return (
     <Modal toggleModal={toggleModal}>
       <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
         <h1>Adicionar novo contato</h1>
       <form onSubmit={handleSubmit(createContact)}>
 
@@ -64,6 +80,7 @@ export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
         <button type="submit">Cadastrar</button>
       </form>
       </Container>
+    
     </Modal>
   );
 };

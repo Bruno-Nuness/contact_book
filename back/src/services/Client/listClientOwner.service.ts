@@ -1,20 +1,20 @@
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities/client.entitie";
-
 import { AppError } from "../../errors/AppError";
 import { TClientResponse } from "../../interfaces/client.interfaces";
-import {
-  ClientSchemaResponse,
-  ClientSchemaResponseList,
-} from "../../schemas/client.schemas";
+import { ClientSchemaResponse } from "../../schemas/client.schemas";
 
-const ListClientService = async (): Promise<TClientResponse[]> => {
+const listClientOwnerService = async (clientId: number): Promise<TClientResponse> => {
   const clientRepository = AppDataSource.getRepository(Client);
-  const client = await clientRepository.find();
+  const client = await clientRepository.findOne({
+    where: {
+      id: clientId,
+    },
+  });
   if (!client) {
     throw new AppError("Client not found.", 404);
   }
 
-  return ClientSchemaResponseList.parse(client);
+  return ClientSchemaResponse.parse(client);
 };
-export default ListClientService;
+export default listClientOwnerService;

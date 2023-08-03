@@ -11,10 +11,11 @@ interface ModalAddProps {
 export const ModalDeleteContact = ({toggleModal, contactId}:ModalAddProps)=>{
 
 
-    const { deleteClient } = useAuth();
+    const { deleteContact } = useAuth();
     const submit= ()=> {
         toggleModal()
-        deleteClient(contactId)
+        window.location.reload();
+        deleteContact(contactId)
 
         
     }

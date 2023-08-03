@@ -4,12 +4,13 @@ import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 import { isUserMiddleware } from "../middlewares/isUser.middleware";
 import { ensureDataIsValid } from "../middlewares/ensureDataValid.middleware";
 import { ClientRegister } from "../schemas/client.schemas";
-import { ensureIsOwnerMiddleware } from "../middlewares/ensureOwner.middleware";
+
 import { ContactSchemaUpdate } from "../schemas/contact.schema";
 import createClientController from "../controllers/Client/createClient.controller";
 import deleteClientController from "../controllers/Client/deleteClient.controller";
 import listClientController from "../controllers/Client/listClient.controller";
 import updateClientController from "../controllers/Client/updateClient.controller";
+import listClienOwnerController from "../controllers/Client/listClientOwner.controller";
 
 const ClientRoute = Router();
 ClientRoute.post(
@@ -22,6 +23,12 @@ ClientRoute.get(
   "",
 
   listClientController
+);
+ClientRoute.get(
+  "/:id",
+  ensureAuthMiddleware,
+  isUserMiddleware,
+  listClienOwnerController
 );
 ClientRoute.patch(
   "/:id",
