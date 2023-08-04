@@ -18,4 +18,9 @@ export const Container = styled.div`
     font-weight: bold;
     width: 80%;
   }
+  span {
+    color: var(--color-orange-500);
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+  }
 `;

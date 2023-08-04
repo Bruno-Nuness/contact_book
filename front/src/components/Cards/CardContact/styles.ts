@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--color-blue-500);
   width: 26rem;
-  /* height: 18rem; */
+
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -30,7 +30,7 @@ export const Container = styled.div`
   }
   .update-btn,
   .delete-btn {
-    width: 18rem;
+ 
     padding: 9px;
     margin-bottom: 1rem;
     border-radius: 8px;
@@ -43,5 +43,17 @@ export const Container = styled.div`
   }
   .delete-btn {
     background-color: var(--color-green-100);
+  }
+  @media(min-width: 768px){
+  .update-btn,
+  .delete-btn {
+    width: 18rem;
+    padding: 9px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+  }
   }
 `;

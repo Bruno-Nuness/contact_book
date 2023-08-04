@@ -8,9 +8,10 @@ import { ModalDeleteContact } from '../../Modals/ModalDeleteContact';
 
 interface CardProps {
   contact: IContact;
+  name:string
 }
 
-export const CardContact = ({ contact }: CardProps) => {
+export const CardContact = ({ contact, name }: CardProps) => {
   const [isOpenModal, setIsOpenModal]=useState(false)
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
   const toggleModal = ()=> setIsOpenModal(!isOpenModal)
@@ -18,8 +19,8 @@ export const CardContact = ({ contact }: CardProps) => {
   return (
     <Container key={contact.id}>
       
-      {isOpenModal && <ModalUpdateContact toggleModal={toggleModal} contactId={contact.id} />}
-      {isOpenDeleteModal && <ModalDeleteContact toggleModal={toggleDeleteModal} contactId={contact.id} />}
+      {isOpenModal && <ModalUpdateContact toggleModal={toggleModal} contactId={contact.id} name={name} />}
+      {isOpenDeleteModal && <ModalDeleteContact toggleModal={toggleDeleteModal} name={name} contactId={contact.id} />}
       <h1 className='title'>{contact.full_name}</h1>
       <p className='email'> {contact.email}</p>
       <p className='date'>{contact.registration_date}</p>

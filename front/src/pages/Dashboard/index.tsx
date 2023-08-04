@@ -60,7 +60,7 @@ export const Dashboard = () => {
         <ProfileCard setContacts={setContacts} client={client} />
         <div className="contacts-container">
           {contacts.map((contact) => (
-            <CardContact key={contact.id} contact={contact} />
+            <CardContact key={contact.id} contact={contact} name={contact.full_name}/>
           ))}
         </div>
       </ContainerMain>

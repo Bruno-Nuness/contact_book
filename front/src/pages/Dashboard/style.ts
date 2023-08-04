@@ -5,10 +5,14 @@ export const ContainerMain = styled.main`
   margin: 0 auto;
   display: flex;
   gap: 7rem;
-  .contacts-container{
+  flex-direction: column;
+  align-items: center;
+  .contacts-container {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 2rem;
   }
 `;

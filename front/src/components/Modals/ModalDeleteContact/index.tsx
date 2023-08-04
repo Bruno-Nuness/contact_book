@@ -5,10 +5,11 @@ import { Container } from "./styles";
 
 interface ModalAddProps {
     toggleModal: () => void;
-    contactId:number
+    contactId:number;
+    name:string
   }
 
-export const ModalDeleteContact = ({toggleModal, contactId}:ModalAddProps)=>{
+export const ModalDeleteContact = ({toggleModal, name,contactId}:ModalAddProps)=>{
 
 
     const { deleteContact } = useAuth();
@@ -22,7 +23,7 @@ export const ModalDeleteContact = ({toggleModal, contactId}:ModalAddProps)=>{
     return(
         <Modal toggleModal={toggleModal}>
             <Container>
-            <h1>Tem certeza que quer exluir o contato?</h1>
+            <h1>Tem certeza que quer exluir <span>{name} </span>  da sua lista de contatos?</h1>
             <button type="button" onClick={submit}>Exluir</button>
             </Container>
         </Modal>

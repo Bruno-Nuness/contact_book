@@ -37,15 +37,21 @@ export const ProfileCard = ({ setContacts, client }: ProfileCardProps) => {
           <div className="profile-box">
             <img src={Profile} alt="imagem de perfil do Cliente" />
           </div>
+          <div className="container-box">
+
+          <div className="informations-box"> 
           <h1>{fullName}</h1>
-          <h2>{email}</h2>
+          <h2 className="email"><i> {email}</i> </h2>
           <p>+ {phone_number}</p>
+
+          </div>
           <button className="update-btn" onClick={toggleUpdateModal}>
             Atualizar perfil
           </button>
           <button className="new-btn" type="button" onClick={toggleAddModal}>
             Novo Contato
           </button>
+          </div>
         </>
       )}
     </Container>

@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 43rem;
-  height: 40rem;
-
+  
   form {
     display: flex;
     flex-direction: column;
@@ -29,5 +27,10 @@ export const Container = styled.div`
   label {
     color: black;
     font-weight: bold;
+  }
+  @media (min-width: 768px){
+  width: 43rem;
+  height: 40rem;
+  
   }
 `;

@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 43rem;
-  height: 40rem;
-
   form {
     display: flex;
     flex-direction: column;
@@ -25,10 +22,22 @@ export const Container = styled.div`
     background-color: var(--color-blue-500);
     color: #ffffff;
     border: 2px solid black;
-
+  }
+  .name{
+    color: var(--color-orange-500);
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
   }
   label {
     color: black;
     font-weight: bold;
+  }
+  span {
+    color: black;
+    font-weight: bold;
+  }
+  @media (min-width: 768px) {
+    width: 43rem;
+    height: 40rem;
   }
 `;

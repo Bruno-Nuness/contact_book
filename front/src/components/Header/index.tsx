@@ -23,7 +23,7 @@ export const Header = ()=>{
             {
             isOpenModal && <ModalDeleteClient  toggleModal={toggleModal}></ModalDeleteClient>
             }
-            <h1>CONTACT BOOK</h1>
+            <h1> <span className="contact"> CONTACT</span> <span className="book">BOOK</span></h1>
             <div className="configurations">
 
             <button className="delete-btn" type="button" onClick={toggleModal}>Delete my account</button>

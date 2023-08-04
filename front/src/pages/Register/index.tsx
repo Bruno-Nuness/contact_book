@@ -20,7 +20,7 @@ export const Register = () => {
   return (
     <Container>
       <div className="container-register">
-        <h1>CONTACT BOOK</h1>
+      <h1> <span className="contact"> CONTACT</span> <span className="book">BOOK</span></h1>
         <h1>Cadastro</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputRegister

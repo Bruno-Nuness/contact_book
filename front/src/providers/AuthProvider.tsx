@@ -132,7 +132,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         },
       });
   
-      toast("Contato deletado >.< ")
+      toast("Contato deletado")
       setUser(response.data);
     } catch (error) {
       console.log(error);

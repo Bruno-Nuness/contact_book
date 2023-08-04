@@ -17,10 +17,11 @@ interface ClientData {
 }
 interface ModalUpdateContactProps {
   toggleModal: () => void;
-  contactId: number
+  contactId: number;
+  name:string
 }
 
-export const ModalUpdateContact = ({ toggleModal, contactId }: ModalUpdateContactProps) => {
+export const ModalUpdateContact = ({ toggleModal, contactId, name }: ModalUpdateContactProps) => {
   const { updateContact } = useAuth();
   const {
     register,
@@ -50,7 +51,7 @@ export const ModalUpdateContact = ({ toggleModal, contactId }: ModalUpdateContac
   return (
     <Modal toggleModal={toggleModal}>
       <Container>
-      <h1>Atualização do Contact</h1>
+      <h1>Atualização do <span> Contact</span>  <span className="name">{name}</span></h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputRegister
           id="full_name"

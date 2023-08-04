@@ -10,7 +10,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  h1 {
+    font-size: 2.8rem;
+  }
   > .container-login {
     background-color: var(--color-blue-500);
     padding: 20px;
@@ -18,15 +20,14 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 58vh;
-    width: 35%;
+    width: 80%;
   }
   form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 100%;
-    height: 67%;
+    gap: 15px;
+
     > label {
       font-weight: bold;
     }
@@ -54,7 +55,37 @@ export const Container = styled.div`
   h1 {
     margin-bottom: 2rem;
   }
-  a{
-    color:var(--color-orange-500)
+  a {
+    color: var(--color-orange-500);
+  }
+  p {
+    margin-top: 2rem;
+    font-size: 1.58rem;
+  }
+  .contact {
+    font-weight: bold;
+    color: var(--color-green-100);
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .book {
+    color: var(--color-orange-500);
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+  }
+  @media (min-width: 768px) {
+    .container-login {
+      height: 66vh;
+      width: 45%;
+    }
+    form {
+      width: 100%;
+      height: 67%;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-login {
+      width: 33%;
+    }
   }
 `;

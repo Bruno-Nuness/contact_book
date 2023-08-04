@@ -32,7 +32,7 @@ export const ModalUpdateClient = ({ toggleModal, id }: ModalUpdateContactProps) 
   return (
     <Modal toggleModal={toggleModal}>
       <Container>
-        <h1>Atualização do Client</h1>
+        <h1>Atualização do <span> Client </span></h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputRegister
           id="full_name"

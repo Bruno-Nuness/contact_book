@@ -17,7 +17,7 @@ export const Login = () => {
   return (
     <Container>
       <div className="container-login">
-        <h1>CONTACT BOOK</h1>
+      <h1> <span className="contact"> CONTACT</span> <span className="book">BOOK</span></h1>
         <h2>Login</h2>
         <form onSubmit={handleSubmit(submit)}>
           <InputRegister
