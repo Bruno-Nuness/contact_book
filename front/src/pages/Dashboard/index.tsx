@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { ContainerMain } from "./style";
 import { api } from "../../services/api";
 import { ProfileCard } from "../../components/Cards/CardProfile";
+import { NotContacts } from "../../components/notContacts";
 
 interface DecodedToken{
   sub:string;
@@ -15,6 +16,7 @@ export interface IContact {
   full_name: string;
   email: string;
   phone_number: string;
+  avatar:string;
   registration_date: string;
 }
 
@@ -59,9 +61,13 @@ export const Dashboard = () => {
       <ContainerMain>
         <ProfileCard setContacts={setContacts} client={client} />
         <div className="contacts-container">
-          {contacts.map((contact) => (
-            <CardContact key={contact.id} contact={contact} name={contact.full_name}/>
-          ))}
+        {contacts.length === 0 ? (
+            <NotContacts />
+          ) : (
+            contacts.map((contact) => (
+              <CardContact key={contact.id} contact={contact} name={contact.full_name} />
+            ))
+          )}
         </div>
       </ContainerMain>
     </>

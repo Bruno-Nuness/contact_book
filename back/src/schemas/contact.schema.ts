@@ -5,6 +5,7 @@ const ContactSchema = z.object({
   full_name: z.string(),
   email: z.string(),
   phone_number: z.string(),
+  avatar: z.string().optional(),
   registration_date: z.date(),
 });
 

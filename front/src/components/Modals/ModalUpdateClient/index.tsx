@@ -8,6 +8,7 @@ interface FormData {
   full_name: string;
   email: string;
   phone_number: string;
+  avatar:string
 }
 
 interface ModalUpdateContactProps {
@@ -57,6 +58,14 @@ export const ModalUpdateClient = ({ toggleModal, id }: ModalUpdateContactProps) 
           placeholder="Digite seu telefone"
           error={errors.phone_number?.message}
           {...register("phone_number", { required: "O telefone é obrigatório" })}
+        />
+        <InputRegister
+          id="avatar"
+          label="avatar:"
+          type="text"
+          placeholder="Digite seu telefone"
+          error={errors.avatar?.message}
+          {...register("avatar", { required: "O telefone é obrigatório" })}
         />
         <button type="submit">Atualizar</button>
       </form>

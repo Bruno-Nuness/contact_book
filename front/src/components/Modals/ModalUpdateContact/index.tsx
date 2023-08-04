@@ -8,17 +8,20 @@ interface FormData {
   full_name: string;
   email: string;
   phone_number: string;
+  avatar:string
 }
 interface ClientData {
   full_name: string;
   email: string;
   phone_number: string;
-
+  avatar:string
+  
 }
 interface ModalUpdateContactProps {
   toggleModal: () => void;
   contactId: number;
   name:string
+
 }
 
 export const ModalUpdateContact = ({ toggleModal, contactId, name }: ModalUpdateContactProps) => {
@@ -31,11 +34,12 @@ export const ModalUpdateContact = ({ toggleModal, contactId, name }: ModalUpdate
 
   const onSubmit: SubmitHandler<FormData> = async(data) => {
     try {
-      const { full_name, email, phone_number } = data;
+      const { full_name, email, phone_number,avatar } = data;
       const updatedContactData: ClientData = {
         full_name,
         email,
         phone_number: phone_number,
+        avatar:avatar,
    
       };
       await updateContact(updatedContactData, contactId);
@@ -76,6 +80,14 @@ export const ModalUpdateContact = ({ toggleModal, contactId, name }: ModalUpdate
           placeholder="Digite seu telefone"
           error={errors.phone_number?.message}
           {...register("phone_number", { required: "O telefone é obrigatório" })}
+        />
+        <InputRegister
+          id="avatar"
+          label="avatar:"
+          type="text"
+          placeholder="Digite seu telefone"
+       
+          {...register("avatar", { required: "O telefone é obrigatório" })}
         />
         <button type="submit">Atualizar</button>
       </form>

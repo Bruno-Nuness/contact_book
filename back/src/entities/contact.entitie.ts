@@ -11,7 +11,10 @@ class Contact {
   email: string;
   @Column()
   phone_number: string;
-
+  @Column({
+    default: "https://cdn-icons-png.flaticon.com/512/3106/3106921.png",
+  })
+  avatar: string;
   @Column()
   registration_date: Date;
   @ManyToOne(() => Client, { onDelete: "CASCADE" })

@@ -7,5 +7,6 @@ export const schema = z.object({
     .string()
     .min(8, "Telefone inválido, deve conter 8 caracteres")
     .max(8, "Máximo 8 caracteres"),
+  avatar: z.string(),
 });
 export type ContactData = z.infer<typeof schema>;

@@ -33,9 +33,12 @@ export const Container = styled.main`
     align-items: center;
   }
   .profile-box img {
-    width: 60%;
-    height: 80%;
+    width: 100%;
+    height: 110%;
+    border-radius: 50%;
+    padding: 10px;
   }
+
   .update-btn,
   .new-btn {
     width: 70%;

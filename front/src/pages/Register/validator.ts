@@ -5,5 +5,6 @@ export const schema = z.object({
   email: z.string().email("Email obrigatório"),
   phone_number: z.string().length(8, "Deve conter 8 caracteres"),
   password: z.string(),
+  avatar: z.string().optional(),
 });
 export type ClientData = z.infer<typeof schema>;

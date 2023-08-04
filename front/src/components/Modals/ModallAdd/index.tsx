@@ -76,6 +76,14 @@ export const ModalAddContact = ({ toggleModal, setContact }: ModalAddProps) => {
             error={errors.email?.message}
             {...register("email", { required: "O email é obrigatório" })}
           />
+          <InputRegister
+            id="avatar"
+            label="avatar:"
+            type="avatar"
+            placeholder="Digite seu avatar"
+            error={errors.avatar?.message}
+            {...register("avatar", { required: "O avatar é obrigatório" })}
+          />
 
         <button type="submit">Cadastrar</button>
       </form>

@@ -73,8 +73,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         navigate("/");
       }, 1500);
       setUser(response.data.user);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
       console.log(error);
+      toast(error.response.data)
     }
   };
   const get = async ()=>{
@@ -159,15 +161,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     <div>
         <ToastContainer
         position="top-right"
-        autoClose={2500}
+        autoClose={1500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
-        theme="light"
+        
+        theme="dark"
       />
     <AuthContext.Provider value={{ signIn, loading, register, user, updateClient,get ,deleteClient, updateContact, deleteContact}}>
       {children}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Dispatch } from "react";
 import { Container } from "./styles";
-import Profile from "../../../assets/img/perfil.png";
+
 import { IContact } from "../../../pages/Dashboard";
 import { ModalAddContact } from "../../Modals/ModallAdd";
 import { ModalUpdateClient } from "../../Modals/ModalUpdateClient";
@@ -22,6 +22,7 @@ export const ProfileCard = ({ setContacts, client }: ProfileCardProps) => {
   const email = client?.email ?? "";
   const phone_number = client?.phone_number ?? "";
   const id = client?.id ?? "";
+  const avatar = client?.avatar ?? "";
   
 
   return (
@@ -35,7 +36,7 @@ export const ProfileCard = ({ setContacts, client }: ProfileCardProps) => {
       {client && (
         <>
           <div className="profile-box">
-            <img src={Profile} alt="imagem de perfil do Cliente" />
+            <img src={avatar} alt="imagem de perfil do Cliente" />
           </div>
           <div className="container-box">
 

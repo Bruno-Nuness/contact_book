@@ -32,6 +32,14 @@ export const Register = () => {
             {...register("full_name", { required: "O nome é obrigatório" })}
           />
           <InputRegister
+            id="avatar"
+            label="Avatar:"
+            type="text"
+            placeholder="URL da imagem desejada ao avatar"
+            error={errors.avatar?.message}
+            {...register("avatar")}
+          />
+          <InputRegister
             id="phone_number"
             label="Phone:"
             type="text"

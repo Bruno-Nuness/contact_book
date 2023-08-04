@@ -6,10 +6,11 @@ const ClientSchema = z.object({
   phone_number: z.string(),
   email: z.string(),
   password: z.string(),
+  avatar: z.string().optional(),
   registration_date: z.date(),
 });
 const ClientSchemaRequest = ClientSchema.omit({
-  id: true,
+  id: true
 });
 const ClientRegister = ClientSchema.omit({
   id: true,
