@@ -9,6 +9,9 @@ Clone este repositório para o seu sistema.
 Instalação de Dependências:
 Abra um terminal ou prompt de comando no diretório raiz do projeto e execute o seguinte comando para instalar as dependências necessárias:
 
+Dados do .env
+DATABASE_URL="postgres://user:password@host:port/db"
+SECRET_KEY=
 
 npm install
 Scripts npm disponíveis:
